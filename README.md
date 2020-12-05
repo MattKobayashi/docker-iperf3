@@ -4,13 +4,13 @@ iPerf3 in an Alpine-based Docker image. Small, lightweight and (most importantly
 
 ## Running as a server
 
-To run docker-iperf as a server in the foreground:
+To run docker-iperf3 as a server in the foreground:
 
 `docker run -it --rm --network=host ingenieurmt/docker-iperf --server`
 
 Or alternatively, you can run it as a daemon in the background:
 
-`docker run -d --name iperf-server --network=host ingenieurmt/docker-iperf --server`
+`docker run -d --name iperf3-server --network=host ingenieurmt/docker-iperf --server`
 
 ## Running as a client
 
@@ -20,7 +20,7 @@ There's a few ways to do this, but the basic gist is:
 
 ## Explanatory notes
 
-- iPerf has a lot of tunables and options available (especially on the client side). These are all documented [here](https://iperf.fr/iperf-doc.php#3doc).
+- iPerf3 has a lot of tunables and options available (especially on the client side). These are all documented [here](https://iperf.fr/iperf-doc.php#3doc).
 
 - The use of `network=host` is recommended so as to avoid the Docker network proxy and ensure the best possible throughput for test conditions. It is possible to use port forwarding commands for extra security, however performance may be affected. For example, you can run a server like this:
 
