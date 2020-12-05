@@ -1,6 +1,6 @@
 FROM alpine:3.12 as buildenv
 
-# Grab iperf from Github and compile
+# Grab iperf3 from Github and compile
 WORKDIR /iperf3
 RUN apk add --no-cache tar build-base \
     && wget -O - https://github.com/esnet/iperf/archive/3.9.tar.gz \
