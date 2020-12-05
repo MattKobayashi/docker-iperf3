@@ -1,4 +1,4 @@
-# docker-iperf
+# docker-iperf3
 
 iPerf3 in an Alpine-based Docker image. Small, lightweight and (most importantly) up-to-date with source.
 
