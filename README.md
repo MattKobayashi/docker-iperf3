@@ -24,4 +24,4 @@ There's a few ways to do this, but the basic gist is:
 
 - The use of `network=host` is recommended so as to avoid the Docker network proxy and ensure the best possible throughput for test conditions. It is possible to use port forwarding commands for extra security, however performance may be affected. For example, you can run a server like this:
 
- `docker run -d --name iperf-server -p 5201:5201/tcp -p 5201:5201/udp ingenieurmt/docker-iperf --server`
+   `docker run -d --name iperf-server -p 5201:5201/tcp -p 5201:5201/udp ingenieurmt/docker-iperf --server`
