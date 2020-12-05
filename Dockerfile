@@ -1,7 +1,7 @@
 FROM alpine:3.12 as buildenv
 
 # Grab iperf from Github and compile
-WORKDIR /iperf
+WORKDIR /iperf3
 RUN apk add --no-cache tar build-base \
     && wget -O - https://github.com/esnet/iperf/archive/3.9.tar.gz \
     | tar -xz --strip 1 \
@@ -12,15 +12,15 @@ RUN apk add --no-cache tar build-base \
 FROM alpine:3.12
 
 # Copy relevant compiled files to distribution image
-RUN adduser --system iperf
+RUN adduser --system iperf3
 COPY --from=buildenv /usr/local/lib/ /usr/local/lib/
 COPY --from=buildenv /usr/local/bin/ /usr/local/bin/
 COPY --from=buildenv /usr/local/include/ /usr/local/include/
 COPY --from=buildenv /usr/local/share/man/ /usr/local/share/man/
 RUN ldconfig -n /usr/local/lib
 
-# Create 'iperf' user
-USER iperf
+# Switch to 'iperf3' user
+USER iperf3
 
 # Set expose port and entrypoint
 EXPOSE 5201
