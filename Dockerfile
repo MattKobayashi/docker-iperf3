@@ -1,4 +1,4 @@
-FROM alpine:3.12 as buildenv
+FROM alpine:3.13 as buildenv
 
 # Grab iperf3 from Github and compile
 WORKDIR /iperf3
@@ -10,7 +10,7 @@ RUN apk --no-cache upgrade \
     && make \
     && make install
 
-FROM alpine:3.12
+FROM alpine:3.13
 
 # Copy relevant compiled files to distribution image
 RUN adduser --system iperf3
