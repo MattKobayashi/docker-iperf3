@@ -18,7 +18,8 @@ COPY --from=buildenv /usr/local/lib/ /usr/local/lib/
 COPY --from=buildenv /usr/local/bin/ /usr/local/bin/
 COPY --from=buildenv /usr/local/include/ /usr/local/include/
 COPY --from=buildenv /usr/local/share/man/ /usr/local/share/man/
-RUN ldconfig -n /usr/local/lib
+RUN ldconfig -n /usr/local/lib \
+    && apk --no-cache upgrade
 
 # Switch to 'iperf3' user
 USER iperf3
