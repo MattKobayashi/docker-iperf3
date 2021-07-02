@@ -1,16 +1,16 @@
-FROM alpine:3.13 as buildenv
+FROM alpine:3.14 as buildenv
 
 # Grab iperf3 from Github and compile
 WORKDIR /iperf3
 RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
-    && wget -O - https://github.com/esnet/iperf/archive/3.9.tar.gz \
+    && wget -O - https://github.com/esnet/iperf/archive/3.10.1.tar.gz \
     | tar -xz --strip 1 \
     && ./configure \
     && make \
     && make install
 
-FROM alpine:3.13
+FROM alpine:3.14
 
 # Copy relevant compiled files to distribution image
 RUN adduser --system iperf3
@@ -28,4 +28,4 @@ USER iperf3
 EXPOSE 5201
 ENTRYPOINT ["iperf3"]
 
-LABEL maintainer="matthew@thompsons.id.au"
+LABEL maintainer="matthew@kobayashi.com.au"
