@@ -4,7 +4,7 @@ FROM alpine:3 as buildenv
 WORKDIR /iperf3
 RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
-    && wget -O - https://github.com/esnet/iperf/archive/3.10.1.tar.gz \
+    && wget -O - https://github.com/esnet/iperf/archive/3.11.tar.gz \
     | tar -xz --strip 1 \
     && ./configure \
     && make \
