@@ -1,11 +1,16 @@
 FROM alpine:3 as buildenv
 
+ENV IPERF3_FILE=iperf3.tar.gz \
+    IPERF3_URL=https://github.com/esnet/iperf/archive/3.11.tar.gz \
+    IPERF3_SHA1SUM=e3d2489a1242c1cdd07039eda75dc7efef5b702a
+
 # Grab iperf3 from Github and compile
 WORKDIR /iperf3
 RUN apk --no-cache upgrade \
     && apk add --no-cache tar build-base \
-    && wget -O - https://github.com/esnet/iperf/archive/3.11.tar.gz \
-    | tar -xz --strip 1 \
+    && wget -O "$IPERF3_FILE" "$IPERF3_URL" \
+    && echo "${IPERF3_SHA1SUM}  ${IPERF3_FILE}" | sha1sum -c - \
+    && tar -xz --strip-components=1 --file="$IPERF3_FILE" \
     && ./configure \
     && make \
     && make install
@@ -28,4 +33,4 @@ USER iperf3
 EXPOSE 5201
 ENTRYPOINT ["iperf3"]
 
-LABEL maintainer="matthew@kobayashi.com.au"
+LABEL maintainer="matthew@kobayashi.au"
